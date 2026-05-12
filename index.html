@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C Massage | Baytown, TX</title>
+  <meta name="description" content="C Massage in Baytown, TX. Professional massage services by appointment only. Open 7 days a week, 9:00 AM - 9:00 PM." />
+  <style>
+    :root{
+      --bg:#fbf8f6;
+      --white:#ffffff;
+      --lavender:#eee5ff;
+      --lavender-2:#f7f0ff;
+      --purple:#4b176f;
+      --purple-2:#6d2a94;
+      --deep:#24102f;
+      --text:#3f3b45;
+      --muted:#706878;
+      --line:#eadff2;
+      --warm:#f3ebe4;
+      --shadow:0 22px 60px rgba(75,23,111,.12);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(1120px, calc(100% - 36px));
+      margin:0 auto;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 24px;
+      border-radius:999px;
+      font-weight:800;
+      border:1px solid transparent;
+      transition:.2s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn.primary{background:var(--purple);color:white;box-shadow:0 12px 26px rgba(75,23,111,.18)}
+    .btn.primary:hover{background:var(--deep);transform:translateY(-2px)}
+    .btn.secondary{background:white;color:var(--purple);border-color:var(--line)}
+    .btn.secondary:hover{background:var(--lavender-2);transform:translateY(-2px)}
+    .btn.light{background:white;color:var(--purple)}
+    .btn.light:hover{background:var(--lavender-2)}
+    .btn.ghost{background:rgba(255,255,255,.12);color:white;border-color:rgba(255,255,255,.25)}
+    .btn.ghost:hover{background:rgba(255,255,255,.2)}
+
+    header{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(234,223,242,.85);
+    }
+    .nav{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+    .logo-mark{
+      height:46px;width:46px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:var(--lavender);
+      color:var(--purple);
+      font-size:24px;
+      box-shadow:0 8px 20px rgba(75,23,111,.08);
+    }
+    .logo-title{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:28px;
+      color:var(--deep);
+      font-weight:700;
+      letter-spacing:.02em;
+      line-height:1;
+    }
+    .logo-sub{
+      margin-top:4px;
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--purple-2);
+      font-weight:800;
+    }
+    .nav-links{
+      display:flex;
+      gap:28px;
+      color:#655d6d;
+      font-size:15px;
+      font-weight:700;
+    }
+    .nav-links a:hover{color:var(--purple)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .menu-btn{display:none}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:150px 0 76px;
+    }
+    .blob{
+      position:absolute;
+      border-radius:999px;
+      filter:blur(55px);
+      opacity:.7;
+      pointer-events:none;
+    }
+    .blob.one{width:330px;height:330px;background:#d8c3f7;left:-140px;top:120px}
+    .blob.two{width:440px;height:440px;background:#f0ddff;right:-190px;bottom:20px}
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:54px;
+      align-items:center;
+    }
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.82);
+      border-radius:999px;
+      color:var(--purple);
+      font-weight:800;
+      box-shadow:0 8px 24px rgba(75,23,111,.06);
+      margin-bottom:18px;
+      font-size:14px;
+    }
+    h1,h2,h3{
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--deep);
+      line-height:1.05;
+    }
+    h1{
+      font-size:clamp(45px, 7vw, 76px);
+      max-width:760px;
+      letter-spacing:-.04em;
+    }
+    .hero p{
+      margin-top:22px;
+      max-width:650px;
+      font-size:19px;
+      color:var(--muted);
+    }
+    .hero-buttons{
+      margin-top:30px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .hero-stats{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      max-width:650px;
+    }
+    .stat{
+      background:rgba(255,255,255,.78);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 10px 28px rgba(75,23,111,.05);
+    }
+    .stat .ico{font-size:22px;margin-bottom:8px}
+    .stat strong{display:block;color:var(--deep)}
+    .stat span{font-size:14px;color:var(--muted)}
+
+    .card-preview{
+      max-width:460px;
+      margin-left:auto;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:36px;
+      padding:15px;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .flower-badge{
+      position:absolute;
+      top:-20px;right:-15px;
+      width:92px;height:92px;
+      border-radius:50%;
+      background:var(--lavender);
+      display:grid;place-items:center;
+      font-size:42px;
+      color:var(--purple);
+      box-shadow:0 18px 36px rgba(75,23,111,.15);
+    }
+    .card-inner{
+      min-height:445px;
+      padding:34px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at top right, rgba(189,159,230,.35), transparent 34%),
+        linear-gradient(135deg, #f7f0ff 0%, #fff 50%, var(--warm) 100%);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid white;
+    }
+    .big-c{
+      font-family:Georgia,serif;
+      font-size:70px;
+      letter-spacing:.12em;
+      color:var(--deep);
+      line-height:1;
+    }
+    .card-title{
+      font-family:Georgia,serif;
+      font-size:42px;
+      font-weight:700;
+      color:var(--purple);
+      margin-top:2px;
+    }
+    .divider{
+      width:100px;height:1px;background:#cdb7dc;margin:28px 0;
+    }
+    .card-inner h3{font-size:25px;margin-bottom:6px}
+    .card-contact{
+      display:grid;
+      gap:18px;
+      color:#5f5569;
+    }
+    .card-contact strong{color:var(--deep)}
+
+    section{padding:78px 0}
+    .notice{
+      padding:0 0 38px;
+    }
+    .notice-box{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:24px;
+      align-items:center;
+    }
+    .notice-icon{
+      height:68px;width:68px;
+      border-radius:22px;
+      background:var(--lavender);
+      display:grid;place-items:center;
+      font-size:32px;
+    }
+    .notice h2{font-size:35px}
+    .notice p{color:var(--muted);margin-top:6px}
+
+    .section-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 44px;
+    }
+    .section-head h2{font-size:clamp(38px,5vw,56px)}
+    .section-head p{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:18px;
+    }
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .service-card{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:30px;
+      transition:.22s ease;
+      box-shadow:0 12px 28px rgba(75,23,111,.04);
+    }
+    .service-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+    }
+    .service-icon{
+      width:58px;height:58px;
+      border-radius:20px;
+      background:var(--lavender);
+      display:grid;place-items:center;
+      font-size:28px;
+      margin-bottom:22px;
+    }
+    .service-card h3{font-size:27px}
+    .service-card p{
+      margin:14px 0 24px;
+      color:var(--muted);
+      min-height:88px;
+    }
+
+    .about{
+      background:white;
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:48px;
+      align-items:center;
+    }
+    .about-art{
+      border-radius:36px;
+      background:linear-gradient(135deg,var(--lavender),var(--bg),white);
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+    .about-art-inner{
+      min-height:360px;
+      border:1px solid white;
+      border-radius:28px;
+      background:rgba(255,255,255,.6);
+      padding:34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .about-art-inner .flower{font-size:70px}
+    .about-art-inner p{
+      font-family:Georgia,serif;
+      color:var(--deep);
+      font-size:38px;
+      line-height:1.08;
+      font-weight:700;
+    }
+    .about-copy h2{font-size:clamp(38px,5vw,56px)}
+    .about-copy p{
+      margin-top:22px;
+      font-size:18px;
+      color:var(--muted);
+      line-height:1.9;
+    }
+    .tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+    .tag{
+      background:var(--lavender-2);
+      color:var(--purple);
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .location-box{
+      background:var(--deep);
+      color:white;
+      border-radius:40px;
+      padding:34px;
+      box-shadow:0 28px 70px rgba(36,16,47,.25);
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:28px;
+    }
+    .location-content{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:30px;
+      padding:34px;
+    }
+    .location-content .label{
+      background:rgba(255,255,255,.12);
+      color:white;
+      border-color:rgba(255,255,255,.15);
+      box-shadow:none;
+    }
+    .location-content h2{
+      color:white;
+      font-size:clamp(38px,5vw,56px);
+    }
+    .info-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:28px;
+    }
+    .info-card{
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:20px;
+    }
+    .info-card.wide{grid-column:1/-1}
+    .info-card strong{display:block;color:white;margin-top:4px}
+    .info-card span,.info-card a{color:#e5d8f1}
+    .location-actions{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .map{
+      border-radius:30px;
+      overflow:hidden;
+      min-height:420px;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .map iframe{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      border:0;
+      filter:grayscale(20%);
+    }
+
+    footer{
+      background:white;
+      border-top:1px solid var(--line);
+      padding:54px 0 34px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.25fr .75fr 1fr;
+      gap:32px;
+    }
+    footer p, footer a{color:var(--muted)}
+    footer a:hover{color:var(--purple)}
+    .footer-title{
+      font-weight:900;
+      color:var(--deep);
+      margin-bottom:14px;
+    }
+    .footer-links{
+      display:grid;
+      gap:9px;
+    }
+    .copyright{
+      border-top:1px solid var(--line);
+      margin-top:36px;
+      padding-top:20px;
+      color:#8d8494;
+      font-size:14px;
+    }
+
+    .mobile-sticky{
+      display:none;
+      position:fixed;
+      left:0;right:0;bottom:0;
+      z-index:60;
+      padding:12px;
+      background:rgba(255,255,255,.96);
+      border-top:1px solid var(--line);
+      backdrop-filter:blur(14px);
+      box-shadow:0 -10px 30px rgba(75,23,111,.1);
+    }
+    .mobile-sticky-inner{
+      display:flex;
+      gap:10px;
+      width:min(440px,100%);
+      margin:0 auto;
+    }
+    .mobile-sticky .btn:first-child{flex:1}
+    .mobile-sticky .btn:last-child{width:58px;padding:0}
+
+    @media (max-width: 980px){
+      .nav-links,.nav-actions{display:none}
+      .menu-btn{
+        display:grid;
+        place-items:center;
+        height:44px;width:44px;
+        border-radius:50%;
+        border:0;
+        background:var(--lavender-2);
+        color:var(--purple);
+        font-size:24px;
+      }
+      .hero-grid,.about-grid,.location-box{
+        grid-template-columns:1fr;
+      }
+      .card-preview{margin:0 auto}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .notice-box{grid-template-columns:1fr;text-align:left}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 680px){
+      body{padding-bottom:82px}
+      .container{width:min(100% - 26px,1120px)}
+      .hero{padding-top:122px}
+      .hero-stats,.services-grid,.info-grid,.footer-grid{
+        grid-template-columns:1fr;
+      }
+      .hero-buttons,.location-actions{
+        flex-direction:column;
+      }
+      .btn{width:100%}
+      .card-inner{min-height:390px;padding:26px}
+      .notice-box{padding:24px}
+      .about-art-inner p{font-size:30px}
+      .location-box{padding:16px;border-radius:30px}
+      .location-content{padding:24px}
+      .mobile-sticky{display:block}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="C Massage home">
+        <div class="logo-mark">✿</div>
+        <div>
+          <div class="logo-title">C Massage</div>
+          <div class="logo-sub">Baytown, TX</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn secondary" href="tel:+17133859350">(713) 385-9350</a>
+        <a class="btn primary" href="#">Book Appointment</a>
+      </div>
+
+      <button class="menu-btn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="blob one"></div>
+      <div class="blob two"></div>
+
+      <div class="container hero-grid">
+        <div>
+          <div class="label">✿ Appointments Only • Open Daily 9 AM - 9 PM</div>
+          <h1>Relaxation Starts With One Appointment</h1>
+          <p>Professional massage services in Baytown, TX. Open 7 days a week by appointment from 9:00 AM to 9:00 PM.</p>
+
+          <div class="hero-buttons">
+            <a class="btn primary" href="#">Book Appointment</a>
+            <a class="btn secondary" href="tel:+17133859350">Call Now</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="ico">🕘</div>
+              <strong>Open 7 Days</strong>
+              <span>9 AM - 9 PM</span>
+            </div>
+            <div class="stat">
+              <div class="ico">📅</div>
+              <strong>Appointments</strong>
+              <span>Book ahead</span>
+            </div>
+            <div class="stat">
+              <div class="ico">📍</div>
+              <strong>Baytown, TX</strong>
+              <span>N. Alexander Dr.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-preview">
+          <div class="flower-badge">✿</div>
+          <div class="card-inner">
+            <div>
+              <div class="big-c">C</div>
+              <div class="card-title">Massage</div>
+              <div class="divider"></div>
+              <h3>Open 7 Days a Week</h3>
+              <p>9:00 AM - 9:00 PM</p>
+            </div>
+
+            <div class="card-contact">
+              <div>
+                <span>Tel</span><br />
+                <a href="tel:+17133859350"><strong>(713) 385-9350</strong></a>
+              </div>
+              <div>
+                <span>Visit</span><br />
+                <strong>2226 N. Alexander Dr., Baytown, TX 77520</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice">
+      <div class="container">
+        <div class="notice-box">
+          <div class="notice-icon">📅</div>
+          <div>
+            <h2>Appointments Only</h2>
+            <p>To provide every guest with a calm and focused experience, C Massage operates by appointment only. Booking online helps reserve your session and avoids missed calls during massage appointments.</p>
+          </div>
+          <a class="btn primary" href="#">Book Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">✿ Massage Services</div>
+          <h2>Choose the care your body needs</h2>
+          <p>Start with one of our most requested massage options. Service times and prices can be added once confirmed.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">💜</div>
+            <h3>Relaxation Massage</h3>
+            <p>A calming session designed to reduce stress, relax the body, and help you feel refreshed.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>Deep Tissue Massage</h3>
+            <p>Focused pressure for muscle tension, stiffness, soreness, and deeper body relief.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🦶</div>
+            <h3>Foot Massage</h3>
+            <p>Targeted care for tired feet and lower legs, perfect after long days on your feet.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">👥</div>
+            <h3>Couples Massage</h3>
+            <p>A peaceful massage experience for two guests looking to relax together.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🔥</div>
+            <h3>Hot Stone Massage</h3>
+            <p>Warm stone therapy that helps melt away tension and support deep relaxation.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✿</div>
+            <h3>Combination Massage</h3>
+            <p>A balanced session that blends massage techniques for a complete body reset.</p>
+            <a class="btn secondary" href="#">Book This Service</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-art">
+          <div class="about-art-inner">
+            <div class="flower">✿</div>
+            <p>Peaceful care, thoughtful appointments, and a relaxing local experience.</p>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <div class="label">✿ About C Massage</div>
+          <h2>A calm place to rest and reset</h2>
+          <p>At C Massage, we provide a peaceful and relaxing massage experience designed to help guests relieve stress, ease body tension, and feel refreshed. Whether you are looking for a calming relaxation session or focused bodywork, our goal is to create a comfortable experience from the moment you arrive.</p>
+          <div class="tags">
+            <span class="tag">Appointments Only</span>
+            <span class="tag">Open Daily</span>
+            <span class="tag">Baytown, TX</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location">
+      <div class="container">
+        <div class="location-box">
+          <div class="location-content">
+            <div class="label">✿ Hours & Location</div>
+            <h2>Visit by appointment</h2>
+
+            <div class="info-grid">
+              <div class="info-card">
+                <div>🕘</div>
+                <strong>Open 7 Days a Week</strong>
+                <span>9:00 AM - 9:00 PM</span>
+              </div>
+              <div class="info-card">
+                <div>📅</div>
+                <strong>Appointments Only</strong>
+                <span>Please book ahead</span>
+              </div>
+              <div class="info-card wide">
+                <div>📍</div>
+                <strong>2226 N. Alexander Dr.</strong>
+                <span>Baytown, TX 77520</span>
+              </div>
+              <div class="info-card wide">
+                <div>📞</div>
+                <strong>Phone</strong>
+                <a href="tel:+17133859350">(713) 385-9350</a>
+              </div>
+            </div>
+
+            <div class="location-actions">
+              <a class="btn light" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=2226%20N.%20Alexander%20Dr.%2C%20Baytown%2C%20TX%2077520">Get Directions</a>
+              <a class="btn ghost" href="tel:+17133859350">Call Now</a>
+              <a class="btn light" href="#">Book Appointment</a>
+            </div>
+          </div>
+
+          <div class="map">
+            <iframe title="C Massage location map" src="https://www.google.com/maps?q=2226%20N.%20Alexander%20Dr.%2C%20Baytown%2C%20TX%2077520&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="#home">
+            <div class="logo-mark">✿</div>
+            <div>
+              <div class="logo-title">C Massage</div>
+              <div class="logo-sub">Baytown, TX</div>
+            </div>
+          </a>
+          <p style="margin-top:18px;max-width:430px;">A peaceful massage experience in Baytown, TX. Open daily by appointment only.</p>
+        </div>
+
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Contact</div>
+          <p>2226 N. Alexander Dr., Baytown, TX 77520</p>
+          <p><a href="tel:+17133859350">(713) 385-9350</a></p>
+          <p>Open 7 days a week, 9:00 AM - 9:00 PM</p>
+        </div>
+      </div>
+
+      <div class="copyright">© 2026 C Massage. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="mobile-sticky">
+    <div class="mobile-sticky-inner">
+      <a class="btn primary" href="#">Book Now</a>
+      <a class="btn secondary" href="tel:+17133859350" aria-label="Call C Massage">📞</a>
+    </div>
+  </div>
+</body>
+</html>
