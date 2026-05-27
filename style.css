@@ -86,11 +86,11 @@ header {
 }
 
 .logo img {
-  width: 54px;
-  height: 54px;
+  width: 82px;
+  height: 82px;
   object-fit: contain;
   filter: drop-shadow(0 0 12px rgba(214, 173, 83, 0.22));
-  border-radius: 8px;
+  
 }
 
 .logo span {
@@ -174,7 +174,7 @@ nav a:hover {
 
 .hero-badge {
   justify-self: center;
-  width: min(360px, 100%);
+  width: min(420px, 100%);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -185,7 +185,7 @@ nav a:hover {
 }
 
 .hero-badge img {
-  width: 72%;
+  width: 88%;
   filter: drop-shadow(0 22px 24px rgba(0,0,0,0.42));
   border-radius: 12px;
 }
