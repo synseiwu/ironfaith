@@ -187,7 +187,6 @@ nav a:hover {
 .hero-badge img {
   width: 88%;
   filter: drop-shadow(0 22px 24px rgba(0,0,0,0.42));
-  border-radius: 12px;
 }
 
 .eyebrow {
@@ -339,8 +338,8 @@ section {
 }
 
 .service-icon {
-  width: 54px;
-  height: 54px;
+  width: 82px;
+  height: 82px;
   display: grid;
   place-items: center;
   margin-bottom: 22px;
