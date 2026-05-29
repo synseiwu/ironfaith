@@ -33,3 +33,6 @@ Using `onboarding@resend.dev` is fine for testing. For a polished client launch,
 ```txt
 CONTACT_FROM_EMAIL=Iron Faith Website <quotes@their-domain.com>
 ```
+
+## Media update
+This version includes one optimized branded construction/development video section using `assets/development-motion.mp4` with a lightweight poster image. The other supplied videos were intentionally not added to avoid overcrowding the page or weakening the existing premium black/gold aesthetic.

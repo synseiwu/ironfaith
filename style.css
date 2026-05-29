@@ -291,6 +291,99 @@ section {
   padding: 96px 0;
 }
 
+.media-showcase {
+  padding: 94px 0;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(184, 138, 45, 0.16), transparent 34%),
+    linear-gradient(180deg, #050505, #101010 52%, #050505);
+  border-top: 1px solid rgba(214, 173, 83, 0.16);
+  border-bottom: 1px solid rgba(214, 173, 83, 0.16);
+}
+
+.media-showcase-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 38px;
+  align-items: center;
+}
+
+.media-copy h2 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  margin-bottom: 20px;
+}
+
+.media-copy p {
+  color: var(--steel-light);
+  font-size: 1.05rem;
+  margin-bottom: 24px;
+}
+
+.media-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.media-points span {
+  border: 1px solid rgba(214, 173, 83, 0.35);
+  color: var(--gold-light);
+  background: rgba(184, 138, 45, 0.08);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.media-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(214, 173, 83, 0.32);
+  background: #070707;
+  box-shadow: var(--shadow);
+  aspect-ratio: 16 / 7;
+}
+
+.media-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.28), transparent 38%, rgba(5, 5, 5, 0.2)),
+    linear-gradient(180deg, transparent 68%, rgba(5, 5, 5, 0.34));
+}
+
+.media-frame::after {
+  content: "Faith Forged. Integrity Driven.";
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3;
+  color: var(--gold-light);
+  background: rgba(0, 0, 0, 0.66);
+  border: 1px solid rgba(214, 173, 83, 0.35);
+  border-radius: 999px;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.media-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
 .section-heading {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -650,6 +743,7 @@ footer .container {
   .hero-grid,
   .section-heading,
   .about-wrap,
+  .media-showcase-grid,
   .contact-card {
     grid-template-columns: 1fr;
   }
@@ -733,4 +827,16 @@ footer .container {
   section {
     padding: 72px 0;
   }
+
+  .media-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .media-frame::after {
+    font-size: 0.62rem;
+    left: 12px;
+    right: 12px;
+    text-align: center;
+  }
 }
+
