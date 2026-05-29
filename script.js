@@ -35,11 +35,11 @@ quoteForm.addEventListener('submit', async (event) => {
       throw new Error(data.error || 'Something went wrong.');
     }
 
-    formStatus.textContent = 'Thank you. Your request has been sent. Iron Faith Development Group will contact you soon.';
+    formStatus.textContent = 'Thank you. Your request has been sent. Iron Faith Development will contact you soon.';
     formStatus.className = 'form-status success';
     quoteForm.reset();
   } catch (error) {
-    formStatus.textContent = error.message || 'Unable to send right now. Please call or email Iron Faith Development Group directly.';
+    formStatus.textContent = error.message || 'Unable to send right now. Please call or email Iron Faith Development directly.';
     formStatus.className = 'form-status error';
   }
 });

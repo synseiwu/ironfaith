@@ -1,4 +1,4 @@
-# Iron Faith Development Group Website
+# Iron Faith Development Website
 
 Static website prepared for GitHub + Vercel deployment.
 

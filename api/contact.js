@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Iron Faith Website <onboarding@resend.dev>';
 
   const emailHtml = `
-    <h2>New quote request from Iron Faith Development Group website</h2>
+    <h2>New quote request from Iron Faith Development website</h2>
     <p><strong>Name:</strong> ${escapeHtml(name)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
     <p><strong>Email:</strong> ${escapeHtml(email || 'Not provided')}</p>
